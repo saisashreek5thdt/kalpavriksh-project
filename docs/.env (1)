@@ -1,0 +1,4 @@
+MONGODB_URI="mongodb+srv://saferecovery:4IbBaEKo2sYaEvOg@cluster0.kbd1dqo.mongodb.net/test"
+JWT_SECRET="1@$#$#^DGDF&%$&*DR%@343&$%DFy567856DFT34%#$%RDFUI5675"
+GMAIL_USER=
+GMAIL_PASSWORD=
