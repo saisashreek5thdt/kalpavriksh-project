@@ -4,6 +4,7 @@ import DoctorTabs from "../shared/DoctorTabs";
 
 import PatientInfo from "./PatientInfo";
 
+
 const PatientAppointmentInfo = () => {
   return (
     <>
