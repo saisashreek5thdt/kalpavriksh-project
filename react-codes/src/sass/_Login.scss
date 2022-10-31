@@ -1,124 +1,101 @@
 .login {
     &__Container {
-        @apply h-full bg-gray-50;
+        @apply flex min-h-full items-center justify-center py-40 px-4 sm:px-6 lg:px-8;
 
-        &-Height {
-            @apply h-full;
+        &--Box {
+            @apply w-full max-w-md space-y-8;
         }
 
-        &-Flexbox {
-            @apply min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8;
-        }
-
-        &-Imgbox {
-            @apply max-w-md w-full space-y-8 my-32 p-4 justify-between bg-white rounded-md shadow-md;
-        }
-
-        &-Img {
+        &--Img {
             @apply mx-auto h-12 w-auto;
         }
-
     }
 
     &__Heading {
         &--Primary {
-            @apply mt-6 text-center text-4xl tracking-tight font-nunito font-semibold text-gray-900;
-        }
-        &--Secondary {
-            @apply mt-6 text-center text-3xl tracking-tight font-nunito font-normal text-gray-900;
+            @apply mt-6 text-center text-3xl font-bold tracking-tight text-gray-900;
         }
     }
 
-    &__Form {
-        &--Container {
-            @apply mt-8 space-y-6 #{!important};
-        }
-
-        &--Inputbox {
-            @apply rounded-md shadow-sm -space-y-px;
-
-            &-Label {
-                @apply sr-only;
-            }
-
-            &-InputEmail[type="email"] {
-                @apply appearance-none font-nunito rounded-md relative block w-full px-3 py-2 my-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm;
-            }
-
-            &-InputPWD[type="password"] {
-                @apply appearance-none font-nunito rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm;
-            }
-
-            &-Input {
-                &[type="email"], &[type="password"] {
-                    @apply appearance-none font-nunito rounded-md relative block w-full px-3 py-2 my-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm;
-                }
-            }
-
-            &-InputError{
-                @apply text-lg text-red-600 font-medium pt-2 my-2;
-            }
-
-        }
+    &__Form-Box {
+        @apply bg-gray-50 rounded-lg shadow-lg mt-8 space-y-6 px-4 py-12;
     }
 
-    &__FlexContainer {
+    &__Form-Input {
+        @apply -space-y-px rounded-md shadow-sm;
+
+        &--Label {
+            @apply sr-only;
+        }
+
+        &--Input {
+            &[type="email"], &[type="password"] {
+                @apply relative block w-full appearance-none rounded-none rounded-lg my-3 border border-gray-300 px-3 py-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm;
+            }
+        }
+
+        &--Email[type="email"] {
+            @apply relative block w-full appearance-none rounded-none rounded-lg my-3 border border-gray-300 px-3 py-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm;
+        }
+
+        &--Password[type="password"] {
+            @apply relative block w-full appearance-none rounded-none rounded-lg my-3 border border-gray-300 px-3 py-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm;
+        }
+
+        &--Error {
+            @apply text-lg text-red-600 font-medium pt-2;
+        }
+
+    }
+
+    &__Checkbox-Container {
         @apply flex items-center justify-between;
+
+        &--Box {
+            @apply flex items-center;
+        }
+
+        &--InputBox[type="checkbox"] {
+            @apply h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500;
+        }
+
+        &--Label {
+            @apply ml-2 block text-sm text-gray-900;
+        }
+
     }
 
-    &__FlexItems {
-        @apply flex items-center;
-
-        &--InputCheck[type="checkbox"] {
-            @apply h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded;
-        }
-
-        &--LabelText {
-            @apply ml-2 block text-sm text-gray-900 font-nunito;
-        }
-    }
-
-    &__Btn {
-        &--Group[type="submit"] {
-            @apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-nunito font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
-        }
-
-        &--Disabled {
-            @apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-nunito font-medium rounded-md text-black bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
-        }
-
-        &--Span {
-            @apply absolute left-0 inset-y-0 flex items-center pl-3;
-
-            &-Icon {
-                @apply h-5 w-5 text-indigo-500 group-hover:text-indigo-400;
+    &__Button {
+        &--Container {
+            &-Btn[type="submit"] {
+                @apply relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
+            }
+            &-BtnSpan {
+                @apply absolute inset-y-0 left-0 flex items-center pl-3;
             }
         }
     }
 
     &__Divider {
         &--Box {
-            @apply mx-auto -mb-6 pb-1 justify-center text-center #{!important};
+            @apply flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5;
         }
+
         &--Text {
-            @apply text-center text-sm text-gray-500 font-nunito font-medium;
+            @apply text-center font-semibold mx-4 mb-0;
         }
     }
 
     &__Social {
-        &--Container {
-            @apply flex items-center w-full mt-6 #{!important};
-
-            &-Btn {
-                @apply w-full md:w-full px-2 pt-4 mx-2;
-            }
+        &--Btn[type="submit"] {
+            @apply relative flex w-full justify-center rounded-md border border-transparent bg-gray-500 py-2 px-4 text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
         }
 
-        &--BtnBox {
-            @apply appearance-none flex items-center justify-center block w-full text-gray-300 shadow-lg border border-gray-300 rounded-lg py-2 px-3 leading-tight hover:bg-gray-100 hover:text-gray-700 focus:outline-none;
+        &--Span {
+            @apply absolute inset-y-0 left-0 flex items-center pl-3;
 
             &-Icon {
-                @apply h-6 w-6 fill-current text-gray-500;
+                @apply h-5 w-5 text-center text-white group-hover:text-gray-100;
             }
         }
     }

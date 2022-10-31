@@ -1,172 +1,184 @@
 .navbar {
 
-    &__Bg {
+    &__BG {
         @apply bg-gray-800;
     }
 
-    &__Container {
-        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    //Desktop
+    &__Container-Desk {
+        @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
 
-        &--FlexBox {
-            @apply flex items-center justify-between h-16;
+    &__Flex {
+        &--Box {
+            @apply flex h-16 items-center justify-between;
+        }
 
-            &-Items {
-                @apply flex items-center;
-            }
+        &--Items {
+            @apply flex items-center;
+        }
 
-            &-ImgBox {
-                @apply flex-shrink-0;
-            }
+        &--LogoBox {
+            @apply flex-shrink-0;
 
-            &-Img {
+            &-Logo {
                 @apply h-8 w-8;
             }
-        }
-    }
 
-    &__Hidden {
-        @apply hidden md:block;
-    }
-
-    &__Items {
-        @apply ml-10 flex items-baseline space-x-4;
-    }
-
-    &__Item {
-        @apply px-3 py-2 rounded-md text-sm font-medium;
-
-        &--Active {
-            @apply bg-gray-900 text-white;
         }
 
-        &--Hover {
-            @apply text-gray-300 hover:bg-gray-700 hover:text-white;
-        }
-    }
+        &--NavItems {
+            @apply ml-10 flex items-baseline space-x-4;
 
-    &__Profile{
-        @apply ml-4 flex items-center md:ml-6;
+            &-Anchor {
+                @apply px-3 py-2 rounded-md text-sm font-medium;
 
-        &--Notify {
-            &-Btn {
-                &[type="button"]{
-                    @apply bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white;
-                }                
-            
-                &_Span {
-                    @apply sr-only;
-                }
-                &_Icon {
-                    @apply h-6 w-6;
-                }
-            }
-        }
-
-        &--MenuBox {
-            @apply ml-3 relative;
-
-            &-Container {
-                &[type="button"]{
-                    @apply max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white;
-                }
-            }
-
-            &-Img {
-                @apply h-8 w-8 rounded-full;
-            }
-
-            &-ItemBox {
-                @apply origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none #{!important};
-            }
-
-            &-Items {
-                @apply block px-4 py-2 text-sm text-gray-700;
-                &_Active {
-                    @apply bg-gray-100;
-                }
-            }
-        }
-
-
-        &--MobileMenu {
-            &-Container {
-                @apply -mr-2 flex md:hidden;
-            }
-
-            &-Btn {
-                &[type="button"] {
-                    @apply bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white;
-                }
-            }
-
-            &-Icon {
-                @apply block h-6 w-6;
-            }
-
-            &-Panel {
-                @apply md:hidden;
-            }
-
-            &-Items {
-                @apply px-2 pt-2 pb-3 space-y-1 sm:px-3;
-            }
-
-            &-Item {
-                @apply block px-3 py-2 rounded-md text-base font-medium;
-
-                &_Active {
+                &_BG {
                     @apply bg-gray-900 text-white;
                 }
-
                 &_Hover {
                     @apply text-gray-300 hover:bg-gray-700 hover:text-white;
                 }
             }
 
-            &-InfoBox {
-                @apply pt-4 pb-3 border-t border-gray-700;
+        }
 
-                &_FlexBox {
-                    @apply flex items-center px-5;
-                }
+    }
 
-                &_Img {
-                    @apply h-10 w-10 rounded-full;
-                }
+    &__RightBox {
+        @apply ml-4 flex items-center md:ml-6;
 
-                &_UserBox {
-                    @apply ml-3;
-                }
+        &--Btn {
+            @apply rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800;
 
-                &_UserName {
-                    @apply text-base font-medium leading-none text-white #{!important};
-                }
-
-                &_UserEmail {
-                    @apply text-sm font-medium leading-none text-gray-400;
-                }
-
-                &_Btn {
-                    &[type="button"] {
-                        @apply ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white;
-                    }
-                }
-
-                &_Icon {
-                    @apply h-6 w-6;
-                }
+            &-Span {
+                @apply sr-only;
             }
 
-            &-InfoItems {
-                @apply mt-3 px-2 space-y-1;
-            }
-
-            &-InfoItem {
-                @apply block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700;
+            &-Icon {
+                @apply h-6 w-6;
             }
 
         }
 
+    }
+
+    &__ProfileBox {
+        @apply relative ml-3;
+
+        &--Btn {
+            &[type="button"] {
+                @apply flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800;
+            }
+            &-Img {
+                @apply h-8 w-8 rounded-full;
+            }
+        }
+
+        &--ItemsBox {
+            @apply absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none;
+        }
+
+        &--Item {
+            @apply block px-4 py-2 text-sm text-gray-700;
+
+            &-Active {
+                @apply bg-gray-100;
+            }
+        }
+
+    }
+
+    &__Hidden-MD {
+        @apply hidden md:block;
+    }
+
+    //Mobile
+    &__Menu-Hidden {
+        @apply -mr-2 flex md:hidden;
+    }
+
+    &__Menu-Btn[type="button"] {
+        @apply inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800;
+    }
+
+    &__Menu-Icon {
+        @apply block h-6 w-6;
+    }
+
+    &__Menu-Hide {
+        @apply md:hidden;
+    }
+
+    &__Menu-Mobile-Box {
+        @apply space-y-1 px-2 pt-2 pb-3 sm:px-3;
+    }
+
+    &__Menu-Mobile{
+        &--Items {
+            @apply block px-3 py-2 rounded-md text-base font-medium;
+
+            &-BG {
+                @apply bg-gray-900 text-white;
+            }
+
+            &-Hover {
+                @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+            }
+        }
+    }
+
+    &__Border-Mobile {
+        @apply border-t border-gray-700 pt-4 pb-3;
+    }
+
+    &__FlexBox-Mobile {
+        @apply flex items-center px-5;
+    }
+
+    &__Flex-ImgBox-Mobile {
+        @apply flex-shrink-0;
+    }
+
+    &__Flex-Img-Mobile {
+        @apply h-10 w-10 rounded-full;
+    }
+
+    &__User-List-Mobile {
+        @apply ml-3;
+    }
+
+    &__User-Name-Mobile {
+        @apply text-base font-medium leading-none text-white;
+    }
+
+    &__User-Email-Mobile {
+        @apply text-sm font-medium leading-none text-gray-400;
+    }
+
+    &__Btn-Box-Mobile[type="button"] {
+        @apply ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800;
+    }
+
+    &__Btn-Box-Mobile {
+        &--Span {
+            @apply sr-only;
+        }
+
+        &--Icon {
+            @apply h-6 w-6;
+        }
+    }
+
+    &__List-Items-Mobile {
+        @apply mt-3 space-y-1 px-2;
+    }
+
+    &__List-Item-Mobile {
+        @apply block rounded-md px-3 py-2 text-base font-medium text-gray-400;
+        &:hover {
+            @apply hover:bg-gray-700 hover:text-white;
+        }
     }
 
 }
