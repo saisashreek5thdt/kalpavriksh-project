@@ -20,7 +20,11 @@ const authenticateduser = JSON.parse(localStorage.getItem("kalpavriksh"));
 
 const role = authenticateduser ? authenticateduser.emailAddress : null;
 
+
 const LoginForm = () => {
+  const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
+
   const auth = useContext(AuthContext);
   const [isLogged, setIsLogged] = useState(false);
 
@@ -68,7 +72,7 @@ const LoginForm = () => {
     event.preventDefault();
 
     const user = DATA.find((data) => data.email === loggedHandler);
-
+    console.log(user,'kl')
     if(!user) return setIsLogged(true);
 
     if (user.password !== loggedHandler) return setIsLogged(true);
@@ -105,11 +109,14 @@ const LoginForm = () => {
             element="input"
             id="emailAddress"
             type="email"
+            name="email"
             label="Email Address"
+            // onChange
             placeholder="Enter Email Address"
             validators={[VALIDATOR_EMAIL()]}
             errorText="Please Enter Valid Email Address"
             onInput={inputHandler}
+            onChange={e => setUserName(e.target.value)}
           />
           {/* Input for Password */}
           <InputLog
@@ -117,10 +124,12 @@ const LoginForm = () => {
             id="password"
             type="password"
             label="Password"
+            name="password"
             placeholder="Enter Password"
             validators={[VALIDATOR_MINLENGTH(6)]}
             errorText="Please Enter Valid Password"
             onInput={inputHandler}
+            onChange={e => setPassword(e.target.value)}
           />
         </div>
 
@@ -143,7 +152,9 @@ const LoginForm = () => {
 
         <div>
           {/* Basic Login Button Starts Here */}
-          <ButtonLog type="submit" disabled={!formState.isValid}>
+          <ButtonLog type="submit" disabled={!formState.isValid}
+          
+          >
           <span className="login__Btn--Span">
               <LockClosedIcon
                 className="w-24 h-24 login__Btn--Span-Icon"
