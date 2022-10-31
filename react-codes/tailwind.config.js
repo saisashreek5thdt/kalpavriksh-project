@@ -5,18 +5,17 @@ module.exports = {
     './node_modules/tw-elements/dist/js/**/*.js'
   ],
   theme: {
-    extend: {},
-    fontFamily: {
-      nunito: ['Nunito', 'sans-serif'],
-      sans: ['Inter', 'sans-serif'],
+    extend: {
+      fontFamily: {
+        'Quicksand': ['Quicksand', 'sans-serif']
+      }
     },
   },
   plugins: [
     require('tailwindcss'),
     require('autoprefixer'),
-    require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/forms'),
     require('@tailwindcss/line-clamp'),
     require('tw-elements/dist/plugin')
   ],

@@ -1,0 +1,778 @@
+{
+	"info": {
+		"_postman_id": "6cbc2bcf-16ac-402c-8115-8074729c5e2d",
+		"name": "HEALTH APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USERS",
+			"item": [
+				{
+					"name": "GET ALL REGISTERED USERS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/users/all",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"all"
+							]
+						},
+						"description": ". Fetches all registered users from DB and returns a json response in an array of objects format.\n\n. Route is Private."
+					},
+					"response": []
+				},
+				{
+					"name": "REGISTER USER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"datarecovery\",\r\n    \"phone\" : \"9010194195\",\r\n    \"dob\" : \"30-03-1994\",\r\n    \"gender\" : 0,\r\n    \"email\" : \"ganeshmediaworks@gmail.com\",\r\n    \"role\" : \"doctor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						},
+						"description": ". Register user by assigning a role including all the (\"name, phone, dob, gender, email, role\") details.\n\n. Route is public"
+					},
+					"response": []
+				},
+				{
+					"name": "GET SINGLE REGISTERED USER BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/users/user/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"user",
+								"630c775eb0701fceb0a4b87a"
+							]
+						},
+						"description": ". Fetches a Registered user based on his ID. If it's a valid ID.\n\n. Fetches using params handler\n\n. Route is private"
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"ganeshrajamaddi@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						},
+						"description": ". User can login using a valid/registered email address and an OTP has been sent to his email for authentication.\n\n. Route is public"
+					},
+					"response": []
+				},
+				{
+					"name": "OTP",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWNiY2ExZTAwY2UxNjI4NDU5ZWQ1ZDMiLCJpYXQiOjE1OTA1MDYxODcsImV4cCI6MTU5MTExMDk4N30.3kw797s89mPPW3CZMzEgZDzYq5fTwWUD4PiqezEtVXg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\" : \"5ajk93\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/users/otp",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"otp"
+							]
+						},
+						"description": ". OTP can be passed as body Object and it's valid for only 5mins from the time of generation.\n\n. An Authorization token should be passed through headers to verify authenticated user id.\n\n. Route is private"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE USER DETAILS",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"datarecovery\",\r\n    \"phone\" : \"9010194195\",\r\n    \"dob\" : \"30-03-1994\",\r\n    \"gender\" : 0,\r\n    \"email\" : \"ganeshmediaworks@gmail.com\",\r\n    \"role\" : \"doctor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/users/user/update/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"user",
+								"update",
+								"630c775eb0701fceb0a4b87a"
+							]
+						},
+						"description": ". Fetches Data from DB and user can be able to update the approved fields and updates his record.\n\n. Route is private\n\n. Only Signed in users can be able to update their info."
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE REGISTERED USER",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/users/user/delete/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"user",
+								"delete",
+								"630c775eb0701fceb0a4b87a"
+							]
+						},
+						"description": ". User can deletes his account based on id.\n\n. Route is private"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DIABETES",
+			"item": [
+				{
+					"name": "REGISTER DIABETES PROGRAM",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"bevarse program\",\r\n    \"number_of_days\" : \"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/programs",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"programs"
+							]
+						},
+						"description": ". Register Diabetes Program\n\n. Route is private"
+					},
+					"response": []
+				},
+				{
+					"name": "REGISTER DATA FORM",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FormTitle\" : \"form 3\",\r\n    \"QuestionType\" : \"textarea\",\r\n    \"QuestionTitle\" : \"question 1\",\r\n    \"choices\" : [\"1\", \"2\", \"3\", \"4\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/dataform",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"dataform"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Dataform by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/dataform/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"dataform",
+								"630c775eb0701fceb0a4b87a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Data form data by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/dataform/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"dataform",
+								"630c775eb0701fceb0a4b87a"
+							]
+						},
+						"description": ". Fetches all Diabetes Program from DB and returns a json response.\n\n. Route is private"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Diabetes Program by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/programs/program/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"programs",
+								"program",
+								"630c775eb0701fceb0a4b87a"
+							]
+						},
+						"description": ". Fetches a Diabetes Program By ID through params handler.\n\n. Route is private"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Diabetes Program by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"bevarse program\",\r\n    \"number_of_days\" : \"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/programs/program/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"programs",
+								"program",
+								"630c775eb0701fceb0a4b87a"
+							]
+						},
+						"description": ". Fetches a Diabetes Program By ID through params handler. and user can update the record\n\n. Route is private"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Diabetes program by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/programs/program/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"programs",
+								"program",
+								"630c775eb0701fceb0a4b87a"
+							]
+						},
+						"description": ". Fetches a Diabetes Program By ID through params handler. and user can update the record\n\n. Route is private"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL DATA FORMS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/dataform/all",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"dataform",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Dataform data by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/dataform/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"dataform",
+								"630c775eb0701fceb0a4b87a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FILE UPLOADS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"file_type\" : \"jpeg\",\r\n    \"file_name\" : \"cpypst\",\r\n    \"aws_bucket_link\" : \"https:www.aws.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/fileuploads",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"fileuploads"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REGISTER MEDICINE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"paracetamol\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/medicines",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"medicines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL MEDICINES FROM DB",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/medicines/all",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"medicines",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET MEDICINE BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/medicines/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"medicines",
+								"630c775eb0701fceb0a4b87a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE MEDICINE BY ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/medicines/medicine/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"medicines",
+								"medicine",
+								"630c775eb0701fceb0a4b87a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE medicine by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/diabetes/medicines/medicine/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"diabetes",
+								"medicines",
+								"medicine",
+								"630c775eb0701fceb0a4b87a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PATIENTS",
+			"item": [
+				{
+					"name": "PATIENT ENROLLMENT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"start_date\": \"30-03-2022\",\r\n    \"end_date\": \"21-04-2022\",\r\n    \"bill_amount\": \"5000\",\r\n    \"bill_paid\": false,\r\n    \"payment_mode\": \"CREDIT CARD\",\r\n    \"external_transaction_no\" : 1234,\r\n    \"data_form_attached_by\" : 123456789,\r\n    \"response_text\" : \"success\",\r\n    \"appointmentdate\" : \"30-03-2022\",\r\n    \"morning_dose\" : \"1\",\r\n    \"afternoon_dose\" : \"2\",\r\n    \"evening_dose\" : \"3\",\r\n    \"comments\" : \"it's working fine.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/patients/register/63275260e2e03a04964c6157/63275291e2e03a04964c6158/6327532be2e03a04964c6159?",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"patients",
+								"register",
+								"63275260e2e03a04964c6157",
+								"63275291e2e03a04964c6158",
+								"6327532be2e03a04964c6159"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL PATIENTS FROM DB",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/patients/all",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"patients",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET PATIENT BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/patients/patient/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"patients",
+								"patient",
+								"630c775eb0701fceb0a4b87a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE patient record by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"start_date\": \"30-03-2022\",\r\n    \"end_date\": \"21-04-2022\",\r\n    \"bill_amount\": \"5000\",\r\n    \"bill_paid\": false,\r\n    \"payment_mode\": \"CREDIT CARD\",\r\n    \"external_transaction_no\" : 1234,\r\n    \"data_form_attached_by\" : 123456789,\r\n    \"response_text\" : \"success\",\r\n    \"appointmentdate\" : \"30-03-2022\",\r\n    \"morning_dose\" : \"1\",\r\n    \"afternoon_dose\" : \"2\",\r\n    \"evening_dose\" : \"3\",\r\n    \"comments\" : \"it's working fine.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/patients/patient/630c775eb0701fceb0a4b87a?doctoridforappointment=630c775eb0701fceb0a4b87a&PatientDoctorAppointmentsid=630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"patients",
+								"patient",
+								"630c775eb0701fceb0a4b87a"
+							],
+							"query": [
+								{
+									"key": "doctoridforappointment",
+									"value": "630c775eb0701fceb0a4b87a"
+								},
+								{
+									"key": "PatientDoctorAppointmentsid",
+									"value": "630c775eb0701fceb0a4b87a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE patient record by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/patients/patient/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"patients",
+								"patient",
+								"630c775eb0701fceb0a4b87a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATIENT FILE ASSIGNMENT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/patients/patientfileassignment/630c775eb0701fceb0a4b87a/630c775eb0701fceb0a4b87a/630c775eb0701fceb0a4b87a",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"patients",
+								"patientfileassignment",
+								"630c775eb0701fceb0a4b87a",
+								"630c775eb0701fceb0a4b87a",
+								"630c775eb0701fceb0a4b87a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

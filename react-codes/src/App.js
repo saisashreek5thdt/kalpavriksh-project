@@ -1,123 +1,63 @@
-import React, { useState, useCallback } from "react";
+import React from 'react';
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter,
+  Routes,
   Route,
-  Redirect
 } from "react-router-dom";
 
-import { AuthContext } from "./context/auth-context";
+// Login Page Import
+import Login from './user/shared/Login';
 
-import Login from "./user/Login";
-import UserDashboard from "./user/UserDashboard";
-import PatientDashboard from "./user/patientDashboard";
-import EnrollPatient from "./pages/form-validations/Enroll-Patient"
-import PatientHealthInfo from "./pages/form-validations/Patient-HealthInfo";
-import PatientPersonalInfo from "./pages/form-validations/Patient-PersonalInfo";
+// Doctor Dashboard Page Imports
+import DoctorDashboard from './user/Dashboards/DoctorDashboard';
+import MultistepForm from './pages/form-validations/MultistepForm';
+import CreatePatient from './pages/form-validations/patient/CreatePatient';
+import PatientHealthInfo from './pages/form-validations/patient/PatientHealthInfo';
+import PatientPersonalInfo from './pages/form-validations/patient/PatientPersonalInfo';
+import CreateForm from './pages/form-validations/patient/CreateForm';
+import UploadDietChart from './pages/form-validations/patient/UploadDietChart';
+import DoctorMeetingInfo from './pages/form-validations/doctor/DoctorMeetingInfo';
 
-import CreateForm from "./pages/form-validations/Create-Form";
+// Patient Dashboard Page Imports
+import PatientDashboard from './user/Dashboards/PatientDashboard';
+import PatientMyData from './user/shared/Patient-MyData';
+import PatientPrescriptions from './user/shared/Patient-Prescriptions';
+import PatientForm from './pages/form-validations/patient/PatientForm';
+import PatientMeetingInfo from './pages/form-validations/patient/PatientMeetingInfo';
 
-import UploadDietChart from "./pages/form-validations/Upload-Diet-Chart";
-import PatientAppointmentInfo from "./pages/form-validations/Patient-AppointmentInfo";
-import MyPatientsInfo from "./pages/form-validations/MyPatients-Info";
-import PatientViewInfo from "./pages/form-validations/Patient-View-Info";
+//Common Page Imports
+import UserChat from './user/shared/UserChat';
 
-import PatientForm from "./pages/form-validations/patient/Patient-Forms";
-import Prescriptions from "./pages/form-validations/patient/Prescriptions";
-import Appointments from "./pages/form-validations/patient/Appointments";
+//SUPER PAGE IMPORTS
+import Admin from "./user/Dashboards/SuperAdmin";
+import EnrolmentsView from './pages/form-validations/admin/EnrolmentsView';
+import EmployeSummary from './pages/form-validations/admin/EmployeSummary';
 
 const App = () => {
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const login = useCallback(() => {
-    setIsLoggedIn(true);
-  }, []);
-
-  const logout = useCallback(() => {
-    setIsLoggedIn(false);
-  }, []);
-
-  let routes;
-
-  if (!isLoggedIn) {
-    routes = (
-      <Router>
-        <Switch>
-          <Route path="/" exact>
-            <Login />
-          </Route>
-          <Route path="/userrole/:roleid/doctor/" exact>
-            <UserDashboard />
-          </Route>
-          <Route path="/userrole/:roleid/patient/" exact>
-            <PatientDashboard />
-          </Route>
-          <Route path="/userrole/:pid/enroll/" exact>
-            <EnrollPatient />
-          </Route>
-          <Route path="/userrole/:pid/enroll/healthinfo/" exact>
-            <PatientHealthInfo />
-          </Route>
-          <Route path="/userrole/:pid/enroll/personalinfo/" exact>
-            <PatientPersonalInfo />
-          </Route>
-          <Route path="/userrole/:pid/form/createform/" exact>
-            <CreateForm />
-          </Route>
-          <Route path="/userrole/:pid/form/dietform/" exact>
-            <UploadDietChart />
-          </Route>
-          <Route path="/userrole/:pid/form/appointment/" exact>
-            <PatientAppointmentInfo />
-          </Route>
-          <Route path="/userrole/:pid/form/appointment/patientinfo_view" exact>
-            <PatientViewInfo />
-          </Route>
-          <Route path="/userrole/:pid/form/mypatients/" excat>
-            <MyPatientsInfo />
-          </Route>
-          <Route path="/userrole/:roleid/form/patientform/" exact>
-            <PatientForm />
-          </Route>
-          <Route path="/userrole/:roleid/form/prescriptions/" exact>
-            <Prescriptions />
-          </Route>
-
-          <Route path="/userrole/:roleid/form/appointments/" exact>
-            <Appointments />
-          </Route>
-
-          <Redirect to="/" />
-        </Switch>
-      </Router>
-    );
-  } else {
-    <Router>
-        <Switch>
-          <Route path="/" exact>
-            <Login />
-          </Route>
-          <Redirect to="/" />
-        </Switch>
-      </Router>
-  }
-
   return (
-    <>
-      <AuthContext.Provider
-        value={{
-          isLoggedIn: isLoggedIn,
-          //userId: userId,
-          login: login,
-          logout: logout,
-        }}
-      >
-        <Router>
-          <main>{routes}</main>
-        </Router>
-      </AuthContext.Provider>
-    </>
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path='/userrole/:roleid/dashboard/doctor/' element={<DoctorDashboard />} />
+        <Route path='/userrole/:roleid/dashboard/doctor/multistep/' element={<MultistepForm />} />
+        <Route path="/userrole/:roleid/dashboard/doctor/enrol/patient/" element={<CreatePatient />} />
+        <Route path='/userrole/:roleid/dashboard/doctor/enrol/healthinfo/' element={<PatientHealthInfo />} />
+        <Route path='/userrole/:roleid/dashboard/doctor/enrol/personalinfo/' element={<PatientPersonalInfo />} />
+        <Route path='/userrole/:roleid/dashboard/doctor/create/form/' element={<CreateForm />} />
+        <Route path='/userrole/:roleid/dashboard/doctor/create/dietchart/' element={<UploadDietChart />} />
+        <Route path='/userrole/:roleid/dashboard/doctor/meeting/info/' element={<DoctorMeetingInfo />} />
+        <Route path='/userrole/:roleid/dashboard/patient/' element={<PatientDashboard />} />
+        <Route path='/userrole/:roleid/dashboard/patient/mydata/' element={<PatientMyData />} />
+        <Route path='/userrole/:roleid/dashboard/patient/mydata/forms/' element={<PatientForm />} />
+        <Route path='/userrole/:roleid/dashboard/patient/prescriptions/' element={<PatientPrescriptions />} />
+        <Route path='/userrole/:roleid/dashboard/patient/meeting/info/' element={<PatientMeetingInfo />} />
+        <Route path='/userrole/:roleid/dashboard/common/chat/' element={<UserChat />} />
+        <Route path='/userrole/:roleid/dashboard/admin/' element={<Admin />} />
+        <Route path='/userrole/:roleid/dashboard/admin/patient/enrolment/view/' element={<EnrolmentsView />} />
+        <Route path='/userrole/:roleid/dashboard/admin/summary/employee/view/' element={<EmployeSummary />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
