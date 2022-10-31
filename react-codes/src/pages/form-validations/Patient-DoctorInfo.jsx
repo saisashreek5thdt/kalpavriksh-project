@@ -1,6 +1,7 @@
 import React from "react";
 import { viewIcon, editIcon } from "../../Components/Icons";
 
+
 const PatientDoctorInfo = () => {
   return (
     <>
