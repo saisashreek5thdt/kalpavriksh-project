@@ -1,14 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stepper } from "react-form-stepper";
 import Navbar from "../../../user/shared/Navbar";
+import { useForm } from "../../../hooks/form-hooks";
+import { useDispatch, useSelector } from "react-redux";
+import LoadingBox from '../../../Components/LoadingBox'
+import MessageBox from '../../../Components/MessageBox'
+
+import { patientRegister } from "../../../action/PatientAction";
 
 const CreatePatient = () => {
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [gender, setGender] = useState('')
+  const [email, setEmail] = useState('')
+  const [dob, setDob] = useState('')
+
+  const registerPatient=useSelector(state=>state.registerPatient)
+  const {loading,error,patient}=registerPatient
+  const role='doctor'
+
+ const dispatch=useDispatch()
   let navigate = useNavigate();
 
   const nextStep = () => {
-    navigate("/userrole/:roleid/dashboard/doctor/enrol/healthinfo/");
   };
+
+  const patientFormHandler=(e)=>{
+     e.preventDefault()
+     console.log(name,email,dob,gender,phone,'heyy');
+     dispatch(patientRegister(name,phone,dob,gender,email,role))
+    // navigate("/userrole/:roleid/dashboard/doctor/enrol/healthinfo/");
+
+  }
 
   return (
     <>
@@ -30,7 +54,7 @@ const CreatePatient = () => {
               <div>
                 <div className="dashboard__Grid-Box">
                   <div className="dashboard__Grid-Cols">
-                    <form action="#" method="POST">
+                    <form action="#" method="POST" onSubmit={patientFormHandler}>
                       <div className="form__Box-Shadow">
                         <div className="form__Box-Space">
                           <div className="form__Grid--Cols-2">
@@ -68,9 +92,11 @@ const CreatePatient = () => {
                               <input
                                 type="tel"
                                 name="phone"
-                                id="phone"
+                                id="patient_phone"
                                 autoComplete="given-name"
                                 className="form__Input"
+                                // onInput={inputHandler}
+                                onChange={(e)=>setPhone(e.target.value)}
                               />
                             </div>
                             <div className="form__Cols--Span-6">
@@ -83,9 +109,11 @@ const CreatePatient = () => {
                               <input
                                 type="text"
                                 name="full-name"
-                                id="full-name"
+                                id="patient_fullName"
                                 autoComplete="given-name"
                                 className="form__Input"
+                                // onInput={inputHandler}
+                                onChange={(e)=>setName(e.target.value)}
                               />
                             </div>
                             <div className="form__Cols--Span-6">
@@ -98,8 +126,10 @@ const CreatePatient = () => {
                               <input
                                 type="email"
                                 name="mail"
-                                id="mail"
+                                id="patient_email"
                                 autoComplete="given-name"
+                                // onInput={inputHandler}
+                                onChange={(e)=>setEmail(e.target.value)}
                                 className="form__Input"
                               />
                             </div>
@@ -113,8 +143,10 @@ const CreatePatient = () => {
                               <input
                                 type="date"
                                 name="dob"
-                                id="dob"
+                                id="patient_dob"
                                 autoComplete="given-name"
+                                // onInput={inputHandler}
+                                onChange={(e)=>setDob(e.target.value)}
                                 className="form__Input"
                               />
                             </div>
@@ -126,19 +158,23 @@ const CreatePatient = () => {
                                 Patient Gender
                               </label>
                               <select
-                                id="gender"
+                                id="patient_gender"
                                 name="gender"
                                 autoComplete="gender-name"
                                 className="form__Select"
+                                // onInput={inputHandler}
+                                onChange={(e)=>setGender(e.target.value)}
                               >
-                                <option>Select Patient Gender</option>
-                                <option>Male</option>
-                                <option>Fe-Male</option>
-                                <option>Other</option>
+                                <option >Select Patient Gender</option>
+                                <option value='0'>Male</option>
+                                <option value='1'>Fe-Male</option>
+                                <option value='2'>Other</option>
                               </select>
                             </div>
                           </div>
                         </div>
+                        {loading && <LoadingBox></LoadingBox>}
+                          {error && <MessageBox variant='danger'>{error}</MessageBox>}
                         <div className="form__Btn-Bg">
                           <button
                             onClick={nextStep}

@@ -4,10 +4,14 @@ import { FaGoogle } from "react-icons/fa";
 import InputLog from "../../Components/InputLog";
 import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "../../utils/validators";
 import { useForm} from "../../hooks/form-hooks";
+import { signInWithGoogle } from "../../action/DoctorAction";
+import { useDispatch } from "react-redux";
+import { signInWithGoogles } from "../../firebase";
 
 const LoginForm = () => {
 
   const [isLogged, setIsLogged] = useState(false);
+  const dispatch=useDispatch()
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -47,6 +51,10 @@ const LoginForm = () => {
     }
     setIsLogged((prevLogg) => (!prevLogg));
   };
+
+  const googleLoginHandler=()=>{
+    dispatch(signInWithGoogle())
+  }
 
   return (
     <>
@@ -142,10 +150,14 @@ const LoginForm = () => {
           <p className="login__Divider--Text">Or</p>
         </div>
 
-        <div>
+
+      </form>
+
+      <div>
           <button
             type="submit"
-            className="group login__Social--Btn"
+            className="group login__Social--Btn" 
+            onClick={googleLoginHandler}
           >
             <span className="login__Social--Span">
               <FaGoogle
@@ -153,10 +165,9 @@ const LoginForm = () => {
                 aria-hidden="true"
               />
             </span>
-            Sign in with Google
+            Sign in with Googles
           </button>
         </div>
-      </form>
     </>
   );
 };

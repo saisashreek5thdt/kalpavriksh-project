@@ -15,7 +15,7 @@ const Login = () => {
               alt="Your Company"
             />
             <h2 className="login__Heading--Primary">
-              Sign in to your account
+              Sign in to your accounts
             </h2>
           </div>
           <LoginForm />

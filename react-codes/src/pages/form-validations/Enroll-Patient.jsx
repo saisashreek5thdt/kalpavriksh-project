@@ -20,6 +20,7 @@ import Navbar from "../shared/Navbar";
 const EnrollPatient = () => {
   // const [val, setVal] = useState({ phone: "", email: "", fullName: "", dob: "", vegetation: "" })
 
+  
   const [formState, inputHandler] = useForm(
     {
       patient_phone: {
@@ -139,7 +140,8 @@ const EnrollPatient = () => {
                                 label="Phone"
                                 validators={[VALIDATOR_MAXLENGTH(10)]}
                                 errorText="Please Enter 10 Digit Number"
-                                onInput={inputHandler}
+                                // onInput={inputHandler}
+                                onChange=
                               />
                               {/* Input Type Component Email Address */}
                               <Input
@@ -149,7 +151,7 @@ const EnrollPatient = () => {
                                 label="Email"
                                 validators={[VALIDATOR_EMAIL()]}
                                 errorText="Please Enter a valid Email Address"
-                                onInput={inputHandler}
+                                onChange={inputHandler}
                               />
                               {/* Input Type Component Full Name */}
                               <Input
