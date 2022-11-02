@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiEye, FiEdit } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { listPatients } from "../../../action/PatientAction";
+import LoadingBox from "../../../Components/LoadingBox";
+import MessageBox from "../../../Components/MessageBox";
 
 const DoctorAppointment = () => {
+  const patientList=useSelector(state=>state.patientList)
+  const {loading,error,patients}=patientList
+  const dispatch=useDispatch()
   let navigate = useNavigate();
+  useEffect(()=>{
+     dispatch(listPatients())
+  },[dispatch])
+  if(!loading && !error){
+    console.log(patients.result)
+  }
   return (
     <>
       {/* Replace with your content */}
@@ -31,7 +44,7 @@ const DoctorAppointment = () => {
                   Sl No.
                 </th>
                 <th className="text-lg font-bold text-gray-900 px-2 py-4">
-                  Doctor Name
+                  Doctor Names
                 </th>
                 <th className="text-lg font-bold text-gray-900 px-2 py-4">
                   Patient Name
@@ -45,6 +58,10 @@ const DoctorAppointment = () => {
               </tr>
             </thead>
             <tbody>
+              {loading ? <LoadingBox></LoadingBox>:
+              error ? <MessageBox>{error}</MessageBox>:
+              patients.result.map((pt)=>(     
+                  <>     
               <tr className="bg-white border-b">
                 <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
                   1
@@ -76,68 +93,9 @@ const DoctorAppointment = () => {
                   </div>
                 </td>
               </tr>
-              <tr className="bg-white border-b">
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  2
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  Dr. Rajiv Singla
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  Krithi Shetty
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  11-10-2022
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  <div className="flex flex-row justify-center">
-                    <div className="inline-block p-6">
-                      <FiEye
-                        className="h-6 w-6 hover:text-green-500"
-                        onClick={() =>
-                          navigate(
-                            "/userrole/:roleid/dashboard/doctor/meeting/info/"
-                          )
-                        }
-                      />
-                    </div>
-                    <div className="inline-block p-6">
-                      <FiEdit className="h-6 w-6 hover:text-blue-500" />
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr className="bg-white border-b">
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  3
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  Dr. Rajiv Singla
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  Krithi Shetty
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  11-10-2022
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  <div className="flex flex-row justify-center">
-                    <div className="inline-block p-6">
-                      <FiEye
-                        className="h-6 w-6 hover:text-green-500"
-                        onClick={() =>
-                          navigate(
-                            "/userrole/:roleid/dashboard/doctor/meeting/info/"
-                          )
-                        }
-                      />
-                    </div>
-                    <div className="inline-block p-6">
-                      <FiEdit className="h-6 w-6 hover:text-blue-500" />
-                    </div>
-                  </div>
-                </td>
-              </tr>
+             
+              </>
+                ))}
             </tbody>
           </table>
         </div>

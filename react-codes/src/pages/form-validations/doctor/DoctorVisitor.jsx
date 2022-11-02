@@ -71,7 +71,7 @@ const DoctorVisitor = () => {
                 Sl No.
               </th>
               <th className="text-lg font-bold text-gray-900 px-2 py-4">
-                Doctor Name
+                Doctor Namess
               </th>
               <th className="text-lg font-bold text-gray-900 px-2 py-4">
                 Patient Name

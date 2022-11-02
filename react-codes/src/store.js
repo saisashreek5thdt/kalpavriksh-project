@@ -1,13 +1,15 @@
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
 import thunk from 'redux-thunk';
 import { googleSigninReducer, googleSigninReducrt } from './reducer/DoctoreReducer';
-import { registerPatientreducer } from './reducer/Patientreducer';
+import { enrollmentPatientReducer, patientListReducer, registerPatientreducer } from './reducer/Patientreducer';
 
 const initialState={}
 
 const reducer =combineReducers({
     registerPatient:registerPatientreducer,
     googleSignin:googleSigninReducer,
+    enrollmentPatient:enrollmentPatientReducer,
+    patientList:patientListReducer,
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

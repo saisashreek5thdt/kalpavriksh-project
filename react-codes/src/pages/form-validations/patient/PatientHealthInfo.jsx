@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stepper } from "react-form-stepper";
 import Navbar from "../../../user/shared/Navbar";
 
 const PatientHealthInfo = () => {
+  const [healthPlan, setHealthPlan] = useState()
+  const [startingDate, setStartingDate] = useState('')
   let navigate = useNavigate();
 
   const nextStep = () => {
-    navigate("/userrole/:roleid/dashboard/doctor/enrol/personalinfo/");
+    navigate("/userrole/:roleid/dashboard/doctor/enrol/personalinfo/",{state:{healthPlan,startingDate}});
   };
 
   return (
@@ -141,12 +143,13 @@ const PatientHealthInfo = () => {
                               name="health-plan"
                               autoComplete="health-plan-name"
                               className="form__Select"
+                              onChange={(e)=>setHealthPlan(e.target.value)}
                             >
-                              <option>Select Health Plan</option>
-                              <option>Plan A</option>
-                              <option>Plan B</option>
-                              <option>Plan C</option>
-                              <option>Plan D</option>
+                              <option >Select Health Plan</option>
+                              <option value='635f6d73ef7e3aef03c93425'> Cardiac Plan</option>
+                              <option value='635f6dddef7e3aef03c93426'>Complete Diet Plan</option>
+                              {/* <option>Plan C</option>
+                              <option>Plan D</option> */}
                             </select>
                           </div>
                           <div className="form__Cols--Span-6">
@@ -162,6 +165,7 @@ const PatientHealthInfo = () => {
                               id="plan-date"
                               autoComplete="given-name"
                               className="form__Input"
+                              onChange={(e)=>setStartingDate(e.target.value)}
                             />
                           </div>
                           <div className="form__Cols--Span-6">
